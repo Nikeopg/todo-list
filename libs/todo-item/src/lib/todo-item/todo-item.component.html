@@ -1,0 +1,13 @@
+<div class="todo-item">
+  <div class="title">{{ todo?.title }}</div>
+  <div class="description">{{ todo?.description }}</div>
+  <div class="due-date">{{ todo?.dueDate | date }}</div>
+  <div class="completed-status">
+    <span>Result:</span>
+    @if (todo?.completed === true) {
+    <span>Done</span>
+    } @else if (todo?.completed === false) {
+    <span>In progress</span>
+    }
+  </div>
+</div>
