@@ -3,12 +3,19 @@ import { CommonModule } from '@angular/common';
 import { TuiHeader } from '@taiga-ui/layout';
 import { TuiBadgeNotification } from '@taiga-ui/kit';
 import { TuiButton } from '@taiga-ui/core';
+import { HeaderComponent } from '@todo-list/header';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [CommonModule, TuiHeader, TuiBadgeNotification, TuiButton],
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    TuiHeader,
+    TuiBadgeNotification,
+    TuiButton,
+  ],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css',
+  styleUrl: './home-page.component.less',
 })
 export class HomePageComponent {}

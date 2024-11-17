@@ -9,6 +9,7 @@ export const appConfig: ApplicationConfig = {
         provideAnimations(),
         provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes),
+        NG_EVENT_PLUGINS,
         NG_EVENT_PLUGINS
     ],
 };
