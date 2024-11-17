@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@todo-list/header": ["libs/header/src/index.ts"],
+      "@todo-list/todos-list": ["libs/todos-list/src/index.ts"],
       "header": ["./dist/header"]
     }
   },
