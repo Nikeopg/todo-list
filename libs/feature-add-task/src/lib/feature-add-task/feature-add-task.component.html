@@ -1,0 +1,31 @@
+<div class="form-container">
+  <form class="form-container__inputs" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+    <tui-input formControlName="title" tuiTextfieldSize="l">
+      Title
+      <input tuiTextfieldLegacy />
+    </tui-input>
+
+    <tui-input formControlName="description" tuiTextfieldSize="l">
+      Description
+      <input tuiTextfieldLegacy />
+    </tui-input>
+
+    <tui-input-date
+      formControlName="dueDate"
+      tuiTextfieldSize="l"
+      tuiUnfinishedValidator="Finish filling the field"
+    >
+      Choose a Due Date
+    </tui-input-date>
+  </form>
+  <button
+    class="form-container__btn"
+    size="l"
+    tuiButton
+    type="submit"
+    (click)="onSubmit()"
+  >
+    Submit
+  </button>
+</div>

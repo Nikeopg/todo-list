@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
+  OnInit
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodoIteimInterface } from '@todo-list/data';
@@ -13,12 +13,19 @@ import { changeDateSeparator } from '@taiga-ui/cdk/utils/miscellaneous';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './todo-item.component.html',
-  styleUrl: './todo-item.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './todo-item.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoItemComponent implements OnInit {
-  ngOnInit(): void {
-    console.log(this.todo);
-  }
+export class TodoItemComponent  {
+
   @Input() todo?: TodoIteimInterface;
+
+  public checkTodoStatus(todo: TodoIteimInterface | undefined): boolean {
+    console.log(`todo: ${todo}`)
+    if (todo === undefined) {
+      return false;
+    }
+    return typeof todo?.completed === 'boolean';
+
+  }
 }
