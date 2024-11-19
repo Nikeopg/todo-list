@@ -1,5 +1,11 @@
-<div class="container">
-  <div class="container-todo" *ngFor="let todo of todosList">
-    <lib-todo-item [todo]="todo"></lib-todo-item>
+<div class="container-todos">
+  <lib-feature-add-task />
+
+  <div class="container-todos__items">
+    <div class="todos-container" *ngFor="let todo of todosList">
+      <lib-todo-item [todo]="todo"></lib-todo-item>
+    </div>
   </div>
+
 </div>
+
