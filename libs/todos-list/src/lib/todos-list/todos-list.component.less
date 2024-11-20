@@ -1,17 +1,21 @@
 .container-todos {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 1024px;
   width: 100%;
-  margin: 0 auto;
-  gap: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container-todos__add-task{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
 .container-todos__items {
+  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 200px;
+  width: 100%;
 }
