@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -15,6 +15,7 @@ import {
 } from '@taiga-ui/legacy';
 import { TuiDay } from '@taiga-ui/cdk';
 import { TuiButton } from '@taiga-ui/core';
+import { TodoIteimInterface } from '@todo-list/data';
 
 @Component({
   selector: 'lib-feature-add-task',
@@ -34,6 +35,8 @@ import { TuiButton } from '@taiga-ui/core';
 export class FeatureAddTaskComponent {
   private readonly fb = inject(FormBuilder);
 
+  @Output() submittedTask = new EventEmitter<TodoIteimInterface>();
+
   taskForm: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
     description: [''],
@@ -41,20 +44,34 @@ export class FeatureAddTaskComponent {
     completed: [false],
   });
 
-  generateId() {
+  public onSubmit() {
+    if (this.taskForm.valid) {
+      let taskData = {
+        id: this.generateId(),
+        ...this.taskForm.value
+      };
+
+      // Преобразование TuiDay в объект Date
+      if (taskData.dueDate instanceof TuiDay) {
+        taskData.dueDate = this.convertTuiDayToDate(taskData.dueDate);
+      } else {
+        // Обработка в случае, если dueDate не является экземпляром TuiDay
+        taskData.dueDate = new Date(taskData.dueDate);
+      }
+
+      this.submittedTask.emit(taskData);
+      this.taskForm.reset()
+
+    }
+
+  }
+
+  private generateId() {
     // Генерируем случайный ID
     return Math.floor(Math.random() * 1000000);
   }
 
-  onSubmit() {
-    if (this.taskForm.valid) {
-      const taskData = {
-        // Определяем ID при отправке
-        id: this.generateId(),
-        ...this.taskForm.value
-      };
-      console.log(taskData);
-      // Здесь мы можем обрабатывать данные формы, например, отправлять их на сервер
-    }
+  private convertTuiDayToDate(date: TuiDay) {
+    return new Date(date.year, date.month, date.day);
   }
 }

@@ -1,5 +1,7 @@
 <div class="container-todos">
-  <lib-feature-add-task />
+  <div class="container-todos__add-task">
+    <lib-feature-add-task (submittedTask)="handleFormSubmit($event)" />
+  </div>
 
   <div class="container-todos__items">
     <div class="todos-container" *ngFor="let todo of todosList">
