@@ -1,31 +1,34 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit
+  inject,
+  Input, OnInit
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TodoIteimInterface } from '@todo-list/data';
-import { changeDateSeparator } from '@taiga-ui/cdk/utils/miscellaneous';
+import { TodoItemInterface } from '@todo-list/data';
+import { TuiCheckbox } from '@taiga-ui/kit';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MockDataServiceService } from '../../../../shared/data/src/lib/data/services/mock-data-service/mock-data-service.service';
 
 @Component({
   selector: 'lib-todo-item',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TuiCheckbox, ReactiveFormsModule, FormsModule],
   templateUrl: './todo-item.component.html',
   styleUrl: './todo-item.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoItemComponent  {
+export class TodoItemComponent {
 
-  @Input() todo?: TodoIteimInterface;
+  @Input() todo?: TodoItemInterface;
 
-  public checkTodoStatus(todo: TodoIteimInterface | undefined): boolean {
-    console.log(`todo: ${todo}`)
-    if (todo === undefined) {
-      return false;
+  private readonly todosMockService = inject(MockDataServiceService);
+
+  onCheckboxChange() {
+    if (this.todo) {
+      const updatedTodo = { ...this.todo, completed: !this.todo.completed };
+      this.todosMockService.updateTodo(updatedTodo);
     }
-    return typeof todo?.completed === 'boolean';
-
   }
+
 }
