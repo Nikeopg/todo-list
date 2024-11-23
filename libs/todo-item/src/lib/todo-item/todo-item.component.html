@@ -1,27 +1,36 @@
-<div class="item" *ngIf="checkTodoStatus(todo)">
-  <div class="title">
+<div class="item" *ngIf="todo">
+  <div class="item__title item-element">
     <span>Title:</span>
     <span>
-    {{ todo?.title }}
+    {{ todo.title }}
     </span>
   </div>
-  <div class="description">
+  <div class="item__description item-element">
     <span>Description:</span>
     <span>
-      {{ todo?.description }}
+      {{ todo.description }}
     </span>
   </div>
-  <div class="due-date">
+  <div class="item__due-date item-element">
     <span>Due date:</span>
     <span>
-      {{ todo?.dueDate | date: 'longDate' }}
+      {{ todo.dueDate | date: 'longDate' }}
     </span>
   </div>
 
-  <div class="completed-status">
+  <div class="item__status item-element">
+    <input
+      class="item__checkbox"
+      tuiCheckbox
+      type="checkbox"
+      size="s"
+      [ngModel]="todo.completed"
+      (ngModelChange)="onCheckboxChange()"
+    />
     <span>Result:</span>
-    <span *ngIf="todo?.completed; else inProgress">Done</span>
-    <ng-template #inProgress><span>
+    <span *ngIf="todo.completed; else inProgress">Done</span>
+    <ng-template #inProgress>
+      <span>
       In progress
     </span>
     </ng-template>

@@ -1,3 +1,3 @@
-import { TodoIteimInterface } from './interfaces/todo-item.interface';
+import { TodoItemInterface } from './interfaces/todo-item.interface';
 
-export { TodoIteimInterface };
+export { TodoItemInterface };

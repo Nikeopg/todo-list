@@ -13,9 +13,9 @@ import {
   TuiTextfieldControllerModule,
   TuiUnfinishedValidator,
 } from '@taiga-ui/legacy';
-import { TuiDay } from '@taiga-ui/cdk';
+import { TuiDay, tuiMarkControlAsTouchedAndValidate } from '@taiga-ui/cdk';
 import { TuiButton } from '@taiga-ui/core';
-import { TodoIteimInterface } from '@todo-list/data';
+import { TodoItemInterface } from '@todo-list/data';
 
 @Component({
   selector: 'lib-feature-add-task',
@@ -35,20 +35,20 @@ import { TodoIteimInterface } from '@todo-list/data';
 export class FeatureAddTaskComponent {
   private readonly fb = inject(FormBuilder);
 
-  @Output() submittedTask = new EventEmitter<TodoIteimInterface>();
+  @Output() submittedTask = new EventEmitter<TodoItemInterface>();
 
   taskForm: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
     description: [''],
-    dueDate: [new TuiDay(2024, 10, 20)],
-    completed: [false],
+    dueDate: [this.getCurrentTuiDay(), [Validators.required]],
   });
 
   public onSubmit() {
     if (this.taskForm.valid) {
       let taskData = {
         id: this.generateId(),
-        ...this.taskForm.value
+        ...this.taskForm.value,
+        completed: false,
       };
 
       // Преобразование TuiDay в объект Date
@@ -60,8 +60,13 @@ export class FeatureAddTaskComponent {
       }
 
       this.submittedTask.emit(taskData);
-      this.taskForm.reset()
+      tuiMarkControlAsTouchedAndValidate(this.taskForm);
 
+      this.taskForm.reset();
+
+    } else {
+      console.log(`invalid!  ${this.taskForm.invalid}`);
+      tuiMarkControlAsTouchedAndValidate(this.taskForm);
     }
 
   }
@@ -69,6 +74,12 @@ export class FeatureAddTaskComponent {
   private generateId() {
     // Генерируем случайный ID
     return Math.floor(Math.random() * 1000000);
+  }
+
+  private getCurrentTuiDay(): TuiDay {
+    const date = new Date();
+    // В Taiga UI месяцы начинаются с 0, поэтому используется getMonth()
+    return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
   }
 
   private convertTuiDayToDate(date: TuiDay) {
