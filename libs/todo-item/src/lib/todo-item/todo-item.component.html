@@ -35,5 +35,10 @@
     </span>
     </ng-template>
   </div>
+  <lib-feature-delete-task
+    class="item__delete"
+    [taskId]="todo.id"
+    (deleteRequest)="onDeleteTask($event)"
+  />
 </div>
 
