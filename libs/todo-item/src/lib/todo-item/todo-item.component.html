@@ -24,6 +24,7 @@
       tuiCheckbox
       type="checkbox"
       size="s"
+      [ngClass]= "{'item_in-progress': !todo.completed}"
       [ngModel]="todo.completed"
       (ngModelChange)="onCheckboxChange()"
     />

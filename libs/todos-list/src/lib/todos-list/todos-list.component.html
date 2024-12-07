@@ -1,8 +1,10 @@
 <div class="container-todos">
   <div class="container-todos__add-task">
+    <span>Create new task:</span>
     <lib-feature-add-task (submittedTask)="handleFormSubmit($event)" />
   </div>
   <div class="container-todos__items">
+    <span class="task-title">Tasks:</span>
     <div class="todos-container" *ngFor="let todo of todosList$ | async">
       <lib-todo-item [todo]="todo"></lib-todo-item>
     </div>

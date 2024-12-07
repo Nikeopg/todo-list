@@ -17,6 +17,9 @@
     "paths": {
       "@todo-list/data": ["libs/shared/data/src/index.ts"],
       "@todo-list/feature-add-task": ["libs/feature-add-task/src/index.ts"],
+      "@todo-list/feature-case-converter": [
+        "libs/feature-case-converter/src/index.ts"
+      ],
       "@todo-list/feature-delete-task": [
         "libs/feature-delete-task/src/index.ts"
       ],
