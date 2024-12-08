@@ -10,14 +10,14 @@ export class MockDataServiceService {
     {
       id: 1,
       title: 'Task 1',
-      description: 'Desc of task 1.',
+      description: 'Example of description 1',
       dueDate: new Date(),
       completed: false,
     },
     {
       id: 2,
       title: 'Task 2',
-      description: 'Desc of task 2.',
+      description: 'Example of description 2',
       dueDate: new Date(),
       completed: true,
     },
@@ -25,7 +25,7 @@ export class MockDataServiceService {
       id: 3,
       title: 'Task 3',
       description:
-        'Desc of task 3. 123213123123123123123123 12312312312 312 312 3',
+        'Example of description 3',
       dueDate: new Date(),
       completed: true,
     },

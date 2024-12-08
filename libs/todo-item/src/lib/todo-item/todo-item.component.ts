@@ -50,16 +50,14 @@ export class TodoItemComponent {
           appearance: 'accent',
 
           content: 'This task will be deleted!',
-          yes: 'Delete !',
-          no: 'No-no',
+          yes: 'Yes, delete',
+          no: 'No',
         },
       })
       .subscribe((response) => {
         if(response) {
-          console.log(`gogogog`);
           this.todosMockService.deleteTodo(taskId);
         } else {
-          console.log(`nononon`);
         }
       });
   }

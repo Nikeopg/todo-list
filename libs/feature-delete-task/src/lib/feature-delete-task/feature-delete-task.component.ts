@@ -18,7 +18,6 @@ export class FeatureDeleteTaskComponent {
   @Output() deleteRequest = new EventEmitter<number>();
 
   deleteTask() {
-    console.log(`удалить таску`);
     if (this.taskId) {
       this.deleteRequest.emit(this.taskId);
     }
