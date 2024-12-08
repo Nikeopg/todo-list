@@ -1,16 +1,11 @@
 <div class="case-converter">
   <div class="case-converter__input">
-    <span class="case-converter__title-input">Enter your text:</span>
-    <tui-input></tui-input>
-    <button size="m" tuiButton type="button">Uppercase</button>
-    <button size="m" tuiButton type="button">Lowercase</button>
-    <button size="m" tuiButton type="button">Capitalize</button>
-
-  </div>
-  <div class="case-converter__text-done">
-    <span class="case-converter__title-done">Done text:</span>
-    <tui-input></tui-input>
+    <span class="case-converter__title">Enter your text:</span>
+    <tui-textarea [(ngModel)]="caseText" (ngModelChange)="onTextChanged($event)" [expandable]="true" [maxLength]="10000">Type a text</tui-textarea>
+    <div class="case-converter__btn">
+      <button tuiButton type="button" class="case-btn" (click)="onUpperCase()" appearance="outline">Uppercase</button>
+      <button tuiButton type="button" class="case-btn" (click)="onLowerCase()" appearance="outline">Lowercase</button>
+      <button tuiButton type="button" class="case-btn" (click)="onCapitalize()" appearance="outline">Capitalize</button>
     </div>
   </div>
-
-
+</div>
